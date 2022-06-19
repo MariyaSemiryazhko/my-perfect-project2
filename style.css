@@ -1,0 +1,32 @@
+body {
+  font-family: sans-serif;
+  color: #2a1a5e;
+  font-family: "Indie Flower", cursive;
+  font-size: x-large;
+}
+.city {
+  margin: 20px;
+  color: #2a1a5e;
+}
+.search {
+  background-color: #fbe555;
+}
+.current {
+  background-color: #fb9224;
+}
+.yellow {
+  color: #fbe555;
+}
+.orange {
+  color: #fb9224;
+}
+.red {
+  color: #f45905;
+}
+h5 {
+  color: #2a1a5e;
+  margin: 20px;
+}
+.buttons {
+  padding-left: 20px;
+}
