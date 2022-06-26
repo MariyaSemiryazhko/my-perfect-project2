@@ -3,7 +3,7 @@
   <head>
     <title>Weather forecast</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -54,29 +54,24 @@
           <div id = "date">
           13.05
           </div>
+          <div>
+            <span id = "temp-change"> 🌡️ 16 </span>
+            <a href="#" id = "cel-link"> °C / </a>
+            <a href="#" id = "far-link">  °F </a> <br>
         </div>
-        <div class="col">
-          <img src="images/rainy.svg" width="80%" /> <br />
+          <div>
+            <img src="https://flyykm.com/wp-content/plugins/yak-weather/images/clear-day.png" width="50%" id = "icon" alt="clear"/> <br />
+          </div>
         </div>
-        <div class="col">
-          Fresh winds from the W (31 km/h at W°).
-        </div>
-      </div>
-      <div class="row align-items-center">
-        <div class="col">
-          <span id = "temp-change"> 🌡️ 16 </span>
-          <a href="#" id = "cel-link"> °C / </a>
-          <a href="#" id = "far-link">  °F </a> <br>
-          feels like: 13 °C
-        </div>
-        <div class="col">
-          Rainy
-        </div>
-        <div class="col">
-          💧 80 %
+        <div class="col-6" >
+          <div> Wind 💨: <span id = "wind"> 31 </span> km/h </div>
+          <div> Humidity 💧: <span id = "humidity"> 80 </span> % </div>
+          <div id = "description">
+            Rainy
+          </div>
         </div>
       </div>
-    </div>
+
 
     <h5>Weather forecast for the next 5 days:</h5>
     <br />
@@ -152,7 +147,7 @@
       </div>
     </div>
 
-    <script src="src/index.js"></script>
+    <script src="index.js"></script>
   </body>
   <footer>
     <a  href="https://github.com/MariyaSemiryazhko/my-perfect-project2"> Open source code </a> by Mariya Semiryazhko

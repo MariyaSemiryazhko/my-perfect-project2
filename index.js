@@ -48,9 +48,16 @@ changingDate.innerHTML = formatDate(new Date());
 
 function displayWeather(response) {
   let weathe = document.querySelector("#temp-change");
-  let temperature = Math.round(response.data.main.temp);
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement =  document.querySelector("#humidity");
+  let windElement =  document.querySelector("#wind");
+  let iconElement =  document.querySelector("#icon");
+  let temperatureElement = Math.round(response.data.main.temp);
 
-  weathe.innerHTML = `${temperature}`;
+  weathe.innerHTML = `${temperatureElement}`;
+   descriptionElement.innerHTML = response.data.weather[0].description.;
+   humidityElement.innerHTML = response.data.main.humidity;
+   windElement.innerHTML = Math.round(response.data.wind.speed);
 }
 
 function search(event) {
@@ -60,6 +67,7 @@ function search(event) {
   let city = document.querySelector("#place");
   let cityValue = `${searchInput.value}`;
   city.innerHTML = searchInput.value;
+
   let apiKey = "13a483e025bc252004749ec865591b38";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeather);
