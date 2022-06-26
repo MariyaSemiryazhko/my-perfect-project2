@@ -1,8 +1,9 @@
 body {
-  font-family: sans-serif;
   color: #2a1a5e;
-  font-family: "Indie Flower", cursive;
-  font-size: x-large;
+  font-family: 'Josefin Sans', sans-serif;
+  }
+#form {
+  margin: 20px;
 }
 .city {
   margin: 20px;

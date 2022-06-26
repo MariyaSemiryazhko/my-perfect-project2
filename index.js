@@ -53,12 +53,14 @@ function displayWeather(response) {
   let windElement =  document.querySelector("#wind");
   let iconElement =  document.querySelector("#icon");
   let temperatureElement = Math.round(response.data.main.temp);
-
   weathe.innerHTML = `${temperatureElement}`;
-   descriptionElement.innerHTML = response.data.weather[0].description.;
+   descriptionElement.innerHTML = response.data.weather[0].description;
    humidityElement.innerHTML = response.data.main.humidity;
    windElement.innerHTML = Math.round(response.data.wind.speed);
+   iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
+
 
 function search(event) {
   event.preventDefault();
