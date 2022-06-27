@@ -48,6 +48,7 @@ changingDate.innerHTML = formatDate(new Date());
 
 function displayWeather(response) {
   let weathe = document.querySelector("#temp-change");
+  let cityElement =  document.querySelector("#place");
   let descriptionElement = document.querySelector("#description");
   let humidityElement =  document.querySelector("#humidity");
   let windElement =  document.querySelector("#wind");
@@ -55,6 +56,7 @@ function displayWeather(response) {
   celsiusTemperature = response.data.main.temp;
   let temperatureElement = Math.round(response.data.main.temp);
   weathe.innerHTML = `${temperatureElement}`;
+  cityElement.innerHTML = response.data.name;
    descriptionElement.innerHTML = response.data.weather[0].description;
    humidityElement.innerHTML = response.data.main.humidity;
    windElement.innerHTML = Math.round(response.data.wind.speed);
@@ -63,19 +65,17 @@ function displayWeather(response) {
 }
 
 
-function search(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#searchEngine");
-
-  let city = document.querySelector("#place");
-  let cityValue = `${searchInput.value}`;
-  city.innerHTML = searchInput.value;
-
+function search(city) {
   let apiKey = "13a483e025bc252004749ec865591b38";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeather);
 }
 
+function handleSubmit(event) {
+event.preventDefault();
+let searchInput = document.querySelector("#searchEngine");
+search(searchInput.value);
+}
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
@@ -97,10 +97,9 @@ function displayCelsiusTemperature(event) {
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
-//let celsiusTemperature = null;
 
 let form = document.querySelector("#form");
-form.addEventListener("submit", search);
+form.addEventListener("submit", handleSubmit);
 
 
 let fahrenheitLink = document.querySelector("#far-link");
@@ -109,4 +108,4 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 let celsiusLink = document.querySelector("#cel-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
-//search ("New York");
+search ("Kyiv");
