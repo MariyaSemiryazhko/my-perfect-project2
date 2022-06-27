@@ -2,8 +2,8 @@ body {
   color: #2a1a5e;
   font-family: 'Josefin Sans', sans-serif;
   }
-#form {
-  margin: 20px;
+.container{
+  margin-top: 20px;
 }
 .city {
   margin: 20px;
