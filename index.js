@@ -50,7 +50,7 @@ changingDate.innerHTML = formatDate(new Date());
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   return days[day];
 }
@@ -72,8 +72,8 @@ function displayForecast(response) {
           src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"           width="50%"
         />
         <div class="temperatures-forecast">
-          <span class="max"> ${Math.round(forecastDay.temp.max)}° </span>
-          <span class="min"> ${Math.round(forecastDay.temp.min)}° </span>
+          <span class="max"> ${Math.round(forecastDay.temp.max)}° C -  </span>
+          <span class="min"> ${Math.round(forecastDay.temp.min)}° C </span>
         </div>
       </div>
   `;
