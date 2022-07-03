@@ -47,45 +47,51 @@ let changingDate = document.querySelector("#date");
 changingDate.innerHTML = formatDate(new Date());
 
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
 
-  let days = ["Thu", "Fri", "Sat", "Sun"];
-
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-      <div class="container">
-        <div class="row align-items-start">
-          <div class="col red">
-            ${day}
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col">
-            <img src="images/cloudy.png" width="15%"/>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col yellow">
-            Cloudy
-          </div>
-        </div>
-        <div class="row align-items-end">
-          <div class="col orange">
-            17°C
-          </div>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+      <div class="col">
+        <div class="forecast">${formatDay(forecastDay.dt)}</div>
+        <img
+          src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"           width="50%"
+        />
+        <div class="temperatures-forecast">
+          <span class="max"> ${Math.round(forecastDay.temp.max)}° </span>
+          <span class="min"> ${Math.round(forecastDay.temp.min)}° </span>
         </div>
       </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
 }
+
+function getForecast(coordinates) {
+
+  let apiKey = "13a483e025bc252004749ec865591b38";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+
 
 function displayWeather(response) {
   let weathe = document.querySelector("#temp-change");
@@ -103,6 +109,7 @@ function displayWeather(response) {
    windElement.innerHTML = Math.round(response.data.wind.speed);
    iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
    iconElement.setAttribute("alt", response.data.weather[0].description);
+    getForecast(response.data.coord);
 }
 
 
@@ -150,5 +157,3 @@ let celsiusLink = document.querySelector("#cel-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search ("Kyiv");
-
-displayForecast();
