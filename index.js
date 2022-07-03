@@ -46,6 +46,47 @@ function formatDate() {
 let changingDate = document.querySelector("#date");
 changingDate.innerHTML = formatDate(new Date());
 
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="container">
+        <div class="row align-items-start">
+          <div class="col red">
+            ${day}
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col">
+            <img src="images/cloudy.png" width="15%"/>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col yellow">
+            Cloudy
+          </div>
+        </div>
+        <div class="row align-items-end">
+          <div class="col orange">
+            17°C
+          </div>
+        </div>
+      </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
+
 function displayWeather(response) {
   let weathe = document.querySelector("#temp-change");
   let cityElement =  document.querySelector("#place");
@@ -109,3 +150,5 @@ let celsiusLink = document.querySelector("#cel-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search ("Kyiv");
+
+displayForecast();
